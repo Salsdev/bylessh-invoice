@@ -30,7 +30,7 @@ export default function InvoiceBuilder() {
     <>
       {/* ── Desktop: side-by-side ── */}
       <div className="hidden md:flex h-dvh font-sans bg-surface-warm print:flex print:h-auto">
-        <InvoiceForm paperRef={paperRef} />
+        <InvoiceForm />
         <InvoicePreview paperRef={paperRef} />
       </div>
 
@@ -39,7 +39,7 @@ export default function InvoiceBuilder() {
         {/* Tab content */}
         <div className="flex-1 overflow-y-auto">
           {activeTab === "form" ? (
-            <InvoiceForm isMobile paperRef={paperRef} />
+            <InvoiceForm isMobile />
           ) : (
             <InvoicePreview isMobile paperRef={paperRef} />
           )}

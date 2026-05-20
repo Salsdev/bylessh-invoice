@@ -1,7 +1,6 @@
 "use client";
 
 import { useInvoiceStore } from "@/store/invoice-store";
-import ExportDropdown from "@/components/export-dropdown";
 import InvoiceDetails from "./form-sections/invoice-details";
 import CustomerDetails from "./form-sections/customer-details";
 import OrderItems from "./form-sections/order-items";
@@ -11,10 +10,8 @@ import BusinessDetails from "./form-sections/business-details";
 
 export default function InvoiceForm({
   isMobile,
-  paperRef,
 }: {
   isMobile?: boolean;
-  paperRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const reset = useInvoiceStore((state) => state.reset);
 
@@ -40,7 +37,6 @@ export default function InvoiceForm({
           >
             Clear
           </button>
-          <ExportDropdown variant="compact" paperRef={paperRef} />
         </div>
       </div>
 
