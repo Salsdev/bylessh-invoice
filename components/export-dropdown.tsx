@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { toPng, toJpeg } from "html-to-image";
 import { jsPDF } from "jspdf";
+import { HiOutlineDocumentArrowDown, HiOutlinePhoto, HiOutlinePrinter, HiOutlineArrowDownTray, HiOutlineChevronDown } from "react-icons/hi2";
 
 interface ExportDropdownProps {
   /** Optional ref to the invoice paper element for image capture */
@@ -180,9 +181,9 @@ export default function ExportDropdown({
   }
 
   const items = [
-    { label: "Download PDF", icon: "📄", action: handlePDF },
-    { label: "Download Image", icon: "🖼", action: handleImage },
-    { label: "Print Invoice", icon: "🖨", action: handlePrint },
+    { label: "Download PDF", icon: <HiOutlineDocumentArrowDown className="w-4 h-4 text-brand" />, action: handlePDF },
+    { label: "Download Image", icon: <HiOutlinePhoto className="w-4 h-4 text-brand" />, action: handleImage },
+    { label: "Print Invoice", icon: <HiOutlinePrinter className="w-4 h-4 text-brand" />, action: handlePrint },
   ];
 
   const triggerClass =
@@ -199,16 +200,13 @@ export default function ExportDropdown({
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        {variant === "full" ? "⬇ Export Invoice" : "Export"}
-        <svg
-          className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2.5}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
+        {variant === "full" ? (
+          <>
+            <HiOutlineArrowDownTray className="w-4 h-4" />
+            Export Invoice
+          </>
+        ) : "Export"}
+        <HiOutlineChevronDown className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
       {/* Dropdown panel */}
@@ -228,7 +226,7 @@ export default function ExportDropdown({
                 border-b border-line-light/50 last:border-b-0 cursor-pointer"
               role="option"
             >
-              <span className="text-base leading-none">{icon}</span>
+              <span className="leading-none flex-shrink-0">{icon}</span>
               {label}
             </button>
           ))}

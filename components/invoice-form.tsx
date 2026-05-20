@@ -17,7 +17,7 @@ export default function InvoiceForm({
 
   return (
     <aside
-      className={`bg-surface border-r border-line flex flex-col overflow-y-auto print:hidden ${isMobile ? "w-full h-full" : "w-[285px] min-w-[285px]"
+      className={`bg-surface border-r border-line flex flex-col overflow-y-auto print:hidden ${isMobile ? "w-full h-full" : "w-[360px] min-w-[360px]"
         }`}
     >
       {/* ── Header ── */}
@@ -30,9 +30,9 @@ export default function InvoiceForm({
             onClick={() => {
               if (window.confirm("Clear all order data?")) reset();
             }}
-            className="bg-transparent text-brand-mid border border-white/25 px-2.5 py-1.5
+            className="bg-white/15 text-white border border-white/30 px-2.5 py-1.5
               rounded text-[10px] font-semibold cursor-pointer
-              hover:text-brand-light transition-colors
+              hover:bg-white/25 transition-colors
               md:px-2.5 md:py-1.5 px-3 py-2 active:scale-95"
           >
             Clear
