@@ -3,10 +3,15 @@
 import { useInvoiceStore } from "@/store/invoice-store";
 import { fmt, prettyDate } from "@/lib/utils";
 import { LOGO_SRC } from "@/lib/logo";
-import { useRef } from "react";
 import ExportDropdown from "@/components/export-dropdown";
 
-export default function InvoicePreview({ isMobile }: { isMobile?: boolean }) {
+export default function InvoicePreview({
+  isMobile,
+  paperRef,
+}: {
+  isMobile?: boolean;
+  paperRef: React.RefObject<HTMLDivElement | null>;
+}) {
   const biz = useInvoiceStore((state) => state.biz);
   const inv = useInvoiceStore((state) => state.inv);
   const customer = useInvoiceStore((state) => state.customer);
@@ -14,7 +19,6 @@ export default function InvoicePreview({ isMobile }: { isMobile?: boolean }) {
   const notes = useInvoiceStore((state) => state.notes);
   const discount = useInvoiceStore((state) => state.discount);
   const getTotals = useInvoiceStore((state) => state.getTotals);
-  const paperRef = useRef<HTMLDivElement>(null);
 
   const { sub, discAmt, total } = getTotals();
   const discPct = parseFloat(discount) || 0;

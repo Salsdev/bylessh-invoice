@@ -9,7 +9,13 @@ import DiscountSection from "./form-sections/discount-section";
 import NotesTerms from "./form-sections/notes-terms";
 import BusinessDetails from "./form-sections/business-details";
 
-export default function InvoiceForm({ isMobile }: { isMobile?: boolean }) {
+export default function InvoiceForm({
+  isMobile,
+  paperRef,
+}: {
+  isMobile?: boolean;
+  paperRef: React.RefObject<HTMLDivElement | null>;
+}) {
   const reset = useInvoiceStore((state) => state.reset);
 
   return (
@@ -34,7 +40,7 @@ export default function InvoiceForm({ isMobile }: { isMobile?: boolean }) {
           >
             Clear
           </button>
-          <ExportDropdown variant="compact" />
+          <ExportDropdown variant="compact" paperRef={paperRef} />
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import InvoiceForm from "./invoice-form";
 import InvoicePreview from "./invoice-preview";
 
@@ -9,6 +9,7 @@ export default function InvoiceBuilder() {
   // Delay render until client-side to avoid hydration mismatch.
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<"form" | "preview">("form");
+  const paperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -29,8 +30,8 @@ export default function InvoiceBuilder() {
     <>
       {/* ── Desktop: side-by-side ── */}
       <div className="hidden md:flex h-dvh font-sans bg-surface-warm print:flex print:h-auto">
-        <InvoiceForm />
-        <InvoicePreview />
+        <InvoiceForm paperRef={paperRef} />
+        <InvoicePreview paperRef={paperRef} />
       </div>
 
       {/* ── Mobile: tabbed layout ── */}
@@ -38,9 +39,9 @@ export default function InvoiceBuilder() {
         {/* Tab content */}
         <div className="flex-1 overflow-y-auto">
           {activeTab === "form" ? (
-            <InvoiceForm isMobile />
+            <InvoiceForm isMobile paperRef={paperRef} />
           ) : (
-            <InvoicePreview isMobile />
+            <InvoicePreview isMobile paperRef={paperRef} />
           )}
         </div>
 
